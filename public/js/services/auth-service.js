@@ -1,4 +1,4 @@
-var app = angular.module('fsApp');
+var app = angular.module('fsCommerce');
 
 app.service('authService', function($http){
 

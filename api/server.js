@@ -4,15 +4,17 @@ var express = require('express'),
 		session = require('express-session'),
 		Passport = require('passport'),
 		mongoose = require('mongoose'),
-		GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+		GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
+		env = require('./.envVar.js');
+
 //--placeholders--//
 var app = express(),
 		port = 9001,
-	  GoogleClientID = "554612152859-l4t38katkr26rd55brcb9lfmldust1il.apps.googleusercontent.com",
-		GoogleClientSecret = "mOBpwmshthY0dkpygGW-XPkK"
+	  GoogleClientID = env.GOOGLE_CLIENT_ID,
+		GoogleClientSecret = env.GOOGLE_CLIENT_SECRET;
+
 //--imported controllers--//
 var UserCtrl = require('./controllers/user-control.js')
-
 
 //---connect mongoDB----//
 var mongoURI = 'mongodb://localhost/full-stack-ecommerce';
@@ -27,12 +29,12 @@ Passport.serializeUser(function(user, done) {
 });
 
 Passport.deserializeUser(function(obj, done) {
-	userCtrl.getUser(obj.id).then(function(results){
+	UserCtrl.updateOrCreate(obj.id).then(function(results){
 		done(null, results);
 	}, function(err){
 		 done(null, err);
 	})
- 
+
 });
 
 Passport.use(new GoogleStrategy({
@@ -56,7 +58,7 @@ app.use(Passport.session());
 //----Oauth path---//
 app.get('/auth/google', Passport.authenticate('google', {scope: 'https://www.googleapis.com/auth/plus.login'}));
 //----Oauth middleware----//
-app.get('/auth/google/callback', 
+app.get('/auth/google/callback',
   Passport.authenticate('google', { failureRedirect: '/auth/failure' }),
   function(req, res) {
     res.redirect('/api/me');

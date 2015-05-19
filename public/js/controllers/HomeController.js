@@ -6,11 +6,11 @@ app.controller('HomeController', function(authService){
 	authService.updateUser()
 		.then(function(data){
 			Home.user = data;
-		})
+		});
 
 	Home.logout = function(){
-		
-	}
+
+	};
 
 
 

@@ -16,13 +16,13 @@
         <li><a ui-sref="home">Home</a></li>
         <li><a ui-sref="products">Products</a></li>
         <li><a ui-sref="dashboard">Dashboard</a></li>
-       <!--  <a href="/auth/google" ng-show="!user"><button class="btn btn-primary"></button></a>
-        <button class="btn btn-warning" ng-click="Home.logout()"></button></a> -->
+       <a href="/auth/google" ng-show="!user">Login<button class="btn btn-primary"></button></a>
+        <button class="btn btn-warning" ng-click="Home.logout()">Logout</button></a>
     </ul>
 </nav>
 
 		<div class="container">
-			
+
 			<div ui-view></div>
 		</div>
 
@@ -32,8 +32,9 @@
 		<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 		<script src="js/app.js"></script>
 		<script src="js/controllers/HomeController.js"></script>
-		<script src="js/controllers/ProductsController.js"></script>				
+		<script src="js/controllers/ProductsController.js"></script>
 		<script src="js/controllers/DashBoardController.js"></script>
+		<script src="/js/services/auth-service.js"></script>
 
 
 	</body>
