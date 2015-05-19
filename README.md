@@ -1,0 +1,39 @@
+ECommerce:
+  -Authentication
+    -User
+      -User Info
+      -Cart
+      -Address
+  - Products
+    -Create
+    -Edit
+    - Delete
+  - View Products
+    -Add to cart
+  -View Cart
+    - Alter Cart
+
+  -Views
+    -Home View
+    -User View
+      -Cart
+      -Addresses
+    - Products View
+     -View Products
+     -Add to Cart
+    -Admin View
+     -Add Products
+   -Models
+    -User
+      -GoogleAuth
+      -Address
+      - Cart
+   -Product
+     - name
+     -price
+     -description
+   - Order
+     - UserRef
+     - Products
+       -Embedded Product
+       -Quantity
